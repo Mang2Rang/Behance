@@ -7,32 +7,27 @@
 .container {
   width: 100vw;
 }
-
-.Content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  margin: 0;
-  padding: 0;
-}
-.Content .button {
-  display: flex;
-  gap: 1rem;
-}
-
-.swiper {
+.container .swiper {
   width: 100%;
-  height: 300px;
+  height: -moz-fit-content;
+  height: fit-content;
   cursor: pointer;
   border-radius: 3px;
+}
+.container .swiper-wrapper {
+  margin: 0;
+  padding: 0;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 .swiper-slide {
   display: flex;
   align-items: center;
   justify-content: center;
+  white-space: nowrap;
+  position: relative;
+  height: 100%;
   margin: 0;
   padding: 0;
 }
@@ -41,12 +36,11 @@
   display: flex;
   top: 50%;
   left: 50%;
-  transform: translate(-25%, -50%);
+  transform: translate(-50%, -50%);
   font-size: 1.5rem;
   font-weight: bolder;
   color: white;
   margin: 0;
-  z-index: 1;
 }
 .swiper-slide figure::before {
   position: absolute;
@@ -56,14 +50,62 @@
   height: 100%;
   content: "";
   background-color: rgba(0, 0, 0, 0.6);
-  opacity: 1;
   z-index: 1;
+}
+.swiper-slide.selected figure::before {
+  background-color: blue;
+}
+
+.Content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 300px;
+}
+.Content .button {
+  display: flex;
+  gap: 1rem;
+}
+.Content .title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  gap: 1rem;
+  padding: 1rem;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+.Content .title.show {
+  opacity: 1;
+}
+.Content p {
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 1.25;
+  margin: 0 auto;
+}
+.Content h2 {
+  color: #191919;
+  font-size: 70px;
+  font-weight: 900;
+  letter-spacing: -1px;
+  line-height: 0.9;
+  margin: 0 0 15px;
 }
 
 .grid-container {
   display: grid;
   width: 100%;
-  height: 100vh;
   grid-template-columns: repeat(3, minmax(20%, auto));
   grid-template-rows: repeat(3, minmax(20%, auto));
   overflow: hidden;
@@ -78,7 +120,6 @@
 .grid-item figure img {
   width: 100%;
   height: 100%;
-  aspect-ratio: 9/16;
 }
 
 figure {
@@ -90,7 +131,7 @@ figure {
   position: relative;
   margin: 0;
   padding: 0;
-  z-index: 0;
+  z-index: -1;
 }
 
 img {
